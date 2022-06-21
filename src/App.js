@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
-import ExpenseItem from "./components/ExpenseItem/ExpenseItem";
+import Expenses from "./components/Expenses/Expenses";
 
 export default function App() {
-  const ExpenseItemvalue = [
+  const expenseItemvalue = [
     {
       title: "Bike Insurance",
       price: "$350",
@@ -28,13 +28,7 @@ export default function App() {
 
   return (
     <div>
-      {ExpenseItemvalue.map((obj) => (
-        <ExpenseItem
-          title={obj.title}
-          price={obj.price}
-          date={obj.date}
-        ></ExpenseItem>
-      ))}
+      <Expenses expenseList={expenseItemvalue}></Expenses>
     </div>
   );
 }
