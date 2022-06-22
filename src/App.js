@@ -8,29 +8,28 @@ export default function App() {
   const DUMMY_ARRAY = [
     {
       title: "Bike Insurance",
-      price: "$350",
+      price: "350",
       date: new Date(),
     },
     {
       title: "Car Insurance",
-      price: "$9470",
+      price: "9470",
       date: new Date(2021, 11, 3),
     },
     {
       title: "Washing",
-      price: "$870",
+      price: "870",
       date: new Date(2021, 3, 12),
     },
     {
       title: "Cleaning",
-      price: "$950",
+      price: "950",
       date: new Date(2019, 4, 27),
     },
   ];
   const [expenseList, setExpenseList] = useState(DUMMY_ARRAY);
   const [filteredExpenseList, setFilteredExpenseList] = useState(DUMMY_ARRAY);
   const [filteredYear, setFilteredYear] = useState("");
-  const [useAddForm, setUseAddForm] = useState(true);
 
   // const [filterYear, setFilterYear] = useState("");
 
@@ -56,22 +55,13 @@ export default function App() {
     setFilteredExpenseList(filteredList);
   };
 
-  const newAndFormHandler = () => {
-    setUseAddForm((prevState) => !prevState);
-  };
-
   return (
     <div>
-      {useAddForm === false ? (
-        <NewExpense
-          stateAddHandler={addItemToExpenseList}
-          onCancleHandler={newAndFormHandler}
-        />
-      ) : (
-        <ExpenseAdd onAddBtnHandler={newAndFormHandler} />
-      )}
+      <NewExpense
+        stateAddHandler={addItemToExpenseList}
+      />
       <Expenses
-        expenseList={filteredExpenseList}
+        filteredList={filteredExpenseList}
         onSetFilterYear={filterYearChangeHandler}
       ></Expenses>
     </div>
