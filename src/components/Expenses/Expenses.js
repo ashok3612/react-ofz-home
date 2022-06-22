@@ -1,20 +1,20 @@
 import Card from "../Card/Card";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import "./Expenses.css";
+import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
+import { useState } from "react";
+import ExpensesList from "../ExpensesList/ExpensesList";
 
 const Expenses = (props) => {
   return (
-    <Card className="expenses">
-      {props.expenseList.map((obj) => {
-        return (
-          <ExpenseItem
-            title={obj.title}
-            price={obj.price}
-            date={obj.date}
-          ></ExpenseItem>
-        );
-      })}
-    </Card>
+    <div>
+      <Card>
+        <ExpenseFilter onSetFilterYear={props.onSetFilterYear} />
+      </Card>
+      <Card className="expenses">
+        <ExpensesList expenseList={props.expenseList} />
+      </Card>
+    </div>
   );
 };
 

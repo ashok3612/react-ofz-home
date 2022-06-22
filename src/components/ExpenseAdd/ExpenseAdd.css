@@ -1,0 +1,15 @@
+.add-expense {
+    text-align: center;
+}
+
+.add-expense__button {
+    background-color: #7726af;
+    border-radius: 10px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+}

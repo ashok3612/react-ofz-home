@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
+import ExpenseAdd from "./components/ExpenseAdd/ExpenseAdd";
 
 export default function App() {
-  const expenseItemvalue = [
+  const DUMMY_ARRAY = [
     {
       title: "Bike Insurance",
       price: "$350",
@@ -12,7 +14,7 @@ export default function App() {
     {
       title: "Car Insurance",
       price: "$9470",
-      date: new Date(2022, 12.3),
+      date: new Date(2021, 11, 3),
     },
     {
       title: "Washing",
@@ -22,13 +24,56 @@ export default function App() {
     {
       title: "Cleaning",
       price: "$950",
-      date: new Date(2019, 5, 15),
+      date: new Date(2019, 4, 27),
     },
   ];
+  const [expenseList, setExpenseList] = useState(DUMMY_ARRAY);
+  const [filteredExpenseList, setFilteredExpenseList] = useState(DUMMY_ARRAY);
+  const [filteredYear, setFilteredYear] = useState("");
+  const [useAddForm, setUseAddForm] = useState(true);
+
+  // const [filterYear, setFilterYear] = useState("");
+
+  const addItemToExpenseList = (obj) => {
+    setExpenseList((prevState) => {
+      return [
+        ...prevState,
+        {
+          title: obj.title,
+          price: obj.amount,
+          date: new Date(obj.date),
+        },
+      ];
+    });
+  };
+
+  const filterYearChangeHandler = (year) => {
+    //  setFilterYear(year);
+    const filteredList = expenseList.filter((expense) => {
+      return year == "" || expense.date.toString().split(" ")[3] === year;
+    });
+    setFilteredYear(year);
+    setFilteredExpenseList(filteredList);
+  };
+
+  const newAndFormHandler = () => {
+    setUseAddForm((prevState) => !prevState);
+  };
 
   return (
     <div>
-      <Expenses expenseList={expenseItemvalue}></Expenses>
+      {useAddForm === false ? (
+        <NewExpense
+          stateAddHandler={addItemToExpenseList}
+          onCancleHandler={newAndFormHandler}
+        />
+      ) : (
+        <ExpenseAdd onAddBtnHandler={newAndFormHandler} />
+      )}
+      <Expenses
+        expenseList={filteredExpenseList}
+        onSetFilterYear={filterYearChangeHandler}
+      ></Expenses>
     </div>
   );
 }
