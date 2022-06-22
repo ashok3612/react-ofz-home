@@ -1,10 +1,11 @@
-import "./ExpensesList.css";
-import ExpenseItem from "../ExpenseItem/ExpenseItem";
+import React from 'react';
+import './ExpensesList.css';
+import ExpenseItem from '../ExpenseItem/ExpenseItem';
 
 const ExpensesList = (props) => {
   if (props.expenseList.length === 0) {
     return (
-      <p style={{ color: "white", textAlign: "center", fontWeight: "bold" }}>
+      <p style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
         No Expenses Found !!!
       </p>
     );

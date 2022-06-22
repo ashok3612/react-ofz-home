@@ -1,11 +1,12 @@
-import "./ExpenseForm.css";
-import { useState } from "react";
+import React from 'react';
+import './ExpenseForm.css';
+import { useState } from 'react';
 
 const ExpenseForm = (props) => {
   const [newFormVaues, setNewFormValues] = useState({
-    title: "",
-    amount: "",
-    date: "",
+    title: '',
+    amount: '',
+    date: '',
   });
 
   const formTitleChangeHandler = (e) => {
@@ -47,9 +48,9 @@ const ExpenseForm = (props) => {
 
   const clearFormValues = () => {
     setNewFormValues({
-      title: "",
-      amount: "",
-      date: "",
+      title: '',
+      amount: '',
+      date: '',
     });
   };
 
@@ -71,7 +72,7 @@ const ExpenseForm = (props) => {
             min="1"
             step="1"
             onChange={formAmountChangeHandler}
-            value = {newFormVaues.amount}
+            value={newFormVaues.amount}
           />
         </div>
         <div className="new-expense__control">
@@ -81,12 +82,18 @@ const ExpenseForm = (props) => {
             min="2019-01-01"
             max="2022-12-31"
             onChange={formDateChangeHandler}
-            value = { newFormVaues.date }
+            value={newFormVaues.date}
           />
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="button" onClick={props.onCancleHandler} className="new-expense__cancel">Cancel</button>
+        <button
+          type="button"
+          onClick={props.onCancleHandler}
+          className="new-expense__cancel"
+        >
+          Cancel
+        </button>
         <button type="submit" className="new-expense__addexpense">
           Add Expense
         </button>
