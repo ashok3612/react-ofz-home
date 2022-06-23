@@ -44,6 +44,18 @@ export default function App() {
         },
       ];
     });
+    if (filteredYear === "" || new Date(obj.date).getFullYear() === +filteredYear) {
+      setFilteredExpenseList((prevState) => {
+        return [
+          ...prevState,
+          {
+            title: obj.title,
+            price: obj.amount,
+            date: new Date(obj.date),
+          },
+        ];
+      });
+    }
   };
 
   const filterYearChangeHandler = (year) => {
@@ -57,9 +69,7 @@ export default function App() {
 
   return (
     <div>
-      <NewExpense
-        stateAddHandler={addItemToExpenseList}
-      />
+      <NewExpense stateAddHandler={addItemToExpenseList} />
       <Expenses
         filteredList={filteredExpenseList}
         onSetFilterYear={filterYearChangeHandler}
